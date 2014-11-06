@@ -1,0 +1,7 @@
+{% extends "piadouro_website/base.html" %}
+{% block content %}
+	{% for piado in piados %}
+		<li style="color:{% cycle 'blue' 'green' %}">{{piado.text}}</li>
+	{% endfor %}
+	<input type="button" onclick="window.location.href= 'new_piado'" value="New piado" /><br />
+{% endblock %}
