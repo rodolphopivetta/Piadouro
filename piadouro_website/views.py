@@ -1,6 +1,6 @@
 from django.shortcuts import render, render_to_response, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
-from piadouro_website.models import Piado
+from piadouro_website.models import Piado, Follow
 from piadouro_website.forms import FormItemPiado
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
@@ -43,9 +43,9 @@ def profile(request, username):
 	prof = get_object_or_404(User, username=username)
 	
 	if "Follow" in request.GET:
-		if request.GET['follow'] == 'Follow':
+		if request.GET['Follow'] == 'Follow':
 			follow = Follow()
-			follow.followed_user = user
+			follow.followed_user = prof
 			follow.follower_user = request.user
 			follow.save()
 		else:
@@ -53,9 +53,9 @@ def profile(request, username):
 											follower_user=request.user)[0]
 			follow.delete()
 
-		return HttpResponseRedirect("/user/" + user.name + "/")
+		return HttpResponseRedirect("/users/" + prof.username + "/")
 
-	followed = len(Follow.objects.filter(followed_user=username, follower_user=request.user)) > 0
+	followed = len(Follow.objects.filter(followed_user__username=username, follower_user=request.user)) > 0
 
 	return render_to_response("piadouro_website/profile.html", {"user": request.user,
 																"piados": Piado.objects.filter(user=prof),

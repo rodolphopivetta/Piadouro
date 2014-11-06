@@ -1,7 +1,7 @@
 {% extends "piadouro_website/base.html" %}
 {% block content %}
 	<div id="user_info" align="center">
-		<a href="/users/{{ user }}">@{{ user }}</a>
+		<a href="/users/{{ user }}/">@{{ user }}</a>
 		<i>{{ user.first_name }} {{ user.last_name }}</i>
 		<br>
 		<i>{{ user.email }}</i>
@@ -9,11 +9,11 @@
 		Joined: {{ user.date_joined }}
 	</div>
 	{% if followed %}
-		<form action="follow" method="get">
+		<form action="Follow" method="GET">
 			<input type="submit" name="Follow" value="Unfollow" />
 		</form>
 	{% else %}
-		<form action="follow" method="get">
+		<form action="Follow" method="GET">
 			<input type="submit" name="Follow" value="Follow" />
 		</form>
 	{% endif %}

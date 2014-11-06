@@ -11,7 +11,7 @@ urlpatterns = patterns('',
     url(r'^logout/$', 'piadouro_website.views.sair', name='logout'),
     url(r'^meus_piados/$', 'piadouro_website.views.meus_piados', name='meus_piados'),
     url(r'^users/$', 'piadouro_website.views.users', name='users'),
-    url(r'users/(?P<username>\w+)', 'piadouro_website.views.profile', name='profile'),
+    url(r'users/(?P<username>\w+)/', 'piadouro_website.views.profile', name='profile'),
 
 
     url(r'^admin/', include(admin.site.urls)),
