@@ -41,7 +41,22 @@ def users(request):
 @login_required
 def profile(request, username):
 	prof = get_object_or_404(User, username=username)
+	
+	if "Follow" in request.GET:
+		if request.GET['follow'] == 'Follow':
+			follow = Follow()
+			follow.followed_user = user
+			follow.follower_user = request.user
+			follow.save()
+		else:
+			follow = Follow.objects.filter(followed_user__username=username,
+											follower_user=request.user)[0]
+			follow.delete()
+
+		return HttpResponseRedirect("/user/" + user.name + "/")
+
 	followed = len(Follow.objects.filter(followed_user=username, follower_user=request.user)) > 0
+
 	return render_to_response("piadouro_website/profile.html", {"user": request.user,
 																"piados": Piado.objects.filter(user=prof),
 																"followed": followed})
