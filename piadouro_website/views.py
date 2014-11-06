@@ -9,7 +9,9 @@ from django.contrib.auth.models import User
 # Create your views here.
 @login_required
 def home(request):
-	return render_to_response("piadouro_website/home.html", {"piados": Piado.objects.all(), 'user':request.user})
+	followeds_ids = Follow.objects.filter(follower_user__username=request.user).values_list("followed_user")
+	return render_to_response("piadouro_website/home.html", {'user':request.user,
+															 "piados": Piado.objects.filter(user__in=followeds_ids)})
 
 @login_required
 def piado_add(request):
@@ -59,4 +61,6 @@ def profile(request, username):
 
 	return render_to_response("piadouro_website/profile.html", {"user": request.user,
 																"piados": Piado.objects.filter(user=prof),
-																"followed": followed})
+																"followed": followed,
+																"amount_followeds": len(Follow.objects.filter(follower_user__username=request.user).values_list("followed_user")),
+															 	"amount_followers": len(Follow.objects.filter(followed_user__username=request.user).values_list("followed_user"))})

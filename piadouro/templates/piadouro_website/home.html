@@ -1,5 +1,7 @@
 {% extends "piadouro_website/base.html" %}
 {% block content %}
+	followers: {{amount_followers}}<br />
+	followeds: {{amount_followeds}}
 	{% for piado in piados %}
 		<li style="color:{% cycle 'blue' 'green' %}">{{piado.text}}</li>
 	{% endfor %}

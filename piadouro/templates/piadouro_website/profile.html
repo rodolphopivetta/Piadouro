@@ -7,6 +7,8 @@
 		<i>{{ user.email }}</i>
 		<br>
 		Joined: {{ user.date_joined }}
+		followers: {{amount_followers}}<br />
+		followeds: {{amount_followeds}}
 	</div>
 	{% if followed %}
 		<form action="Follow" method="GET">
