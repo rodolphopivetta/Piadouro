@@ -1,8 +1,10 @@
 {% extends "piadouro_website/base.html" %}
 {% block content %}
+	followers: {{amount_followers}}<br />
+	followeds: {{amount_followeds}}
 	{% for piado in piados %}
 		<li style="color:{% cycle 'blue' 'green' %}">{{piado.text}}</li>
 	{% endfor %}
-	<input type="button" onclick="window.location.href= 'new_piado'" value="New piado" /><br />
+	<input type="button" onclick="window.location.href= '/new_piado'" value="New piado" /><br />
 	<input type="button" onclick="window.location.href= '/users'" value="Users" /><br />
 {% endblock %}
