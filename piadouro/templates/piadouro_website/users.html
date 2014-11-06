@@ -1,8 +1,9 @@
 {% extends "piadouro_website/base.html" %}
 {% block content %}
-	{% for u in users %}
+		{% for u in users %}
 		<div align="center">
-			<p style="color:{% cycle 'blue' 'green' %}">{{u}}</p>
+			<p style="color:{% cycle 'blue' 'green' %}"><a href='/users/{{ u }}'>{{ u }}</a></p>
 		</div>
+	</div>
 	{% endfor %}
 {% endblock %}

@@ -1,0 +1,18 @@
+{% extends "piadouro_website/base.html" %}
+{% block content %}
+	<div id="user_info" align="center">
+		<a href="/users/{{ user }}">@{{ user }}</a>
+		<i>{{ user.first_name }} {{ user.last_name }}</i>
+		<br>
+		<i>{{ user.email }}</i>
+		<br>
+		Joined: {{ user.date_joined }}
+	</div>
+	
+	<div style="padding:40px;">
+		{% for piado in piados %}
+			<li style="color:{% cycle 'blue' 'green' %}">{{piado.text}}</li>
+		{% endfor %}
+	</div>
+	<input type="button" onclick="window.location.href= 'new_piado'" value="New piado" /><br />
+{% endblock %}

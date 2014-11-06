@@ -7,6 +7,6 @@ class Piado(models.Model):
 	text = models.CharField(max_length=140)
 	user = models.ForeignKey(User)
 
-class Fllow(models.Model):
+class Follow(models.Model):
 	follower_user = models.ForeignKey(User, related_name="follower")
 	followed_user = models.ForeignKey(User, related_name="followed")
