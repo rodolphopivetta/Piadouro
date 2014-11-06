@@ -32,7 +32,7 @@ def sair(request):
 
 @login_required
 def meus_piados(request):
-	return render_to_response("piadouro_website/home.html", {"piados": Piado.objects.filter(user=request.user) })
+	return render_to_response("piadouro_website/home.html", {"piados": Piado.objects.filter(user=request.user), "user": request.user })
 
 @login_required
 def users(request):

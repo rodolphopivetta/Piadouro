@@ -8,7 +8,15 @@
 		<br>
 		Joined: {{ user.date_joined }}
 	</div>
-	
+	{% if followed %}
+		<form action="follow" method="get">
+			<input type="submit" name="Follow" value="Unfollow" />
+		</form>
+	{% else %}
+		<form action="follow" method="get">
+			<input type="submit" name="Follow" value="Follow" />
+		</form>
+	{% endif %}
 	<div style="padding:40px;">
 		{% for piado in piados %}
 			<li style="color:{% cycle 'blue' 'green' %}">{{piado.text}}</li>
